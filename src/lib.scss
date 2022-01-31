@@ -1,0 +1,182 @@
+$flexPropValList: (
+    "fs": flex-start,
+    "fe": flex-end,
+    "c": center,
+    "sb": space-between,
+    "sa": space-around,
+    "se": space-evenly,
+    "ini": initial,
+    "inh": inherit,
+);
+$flexDirValList:(
+    "c": column,
+);
+@mixin displayProp($prop){
+    @if $prop and map-has-key($prop, "jc"){
+        $propVal: map-get($prop, "jc");
+        justify-content: map-get($flexPropValList, $propVal);
+    }
+    @if $prop and map-has-key($prop, "ai"){
+        $propVal: map-get($prop, "ai");
+        align-items: map-get($flexPropValList, $propVal);
+    }
+    @if $prop and map-has-key($prop, "ac"){
+        $propVal: map-get($prop, "ac");
+        align-content: map-get($flexPropValList, $propVal);
+    }
+    @if $prop and map-has-key($prop, "fd"){
+        $propVal: map-get($prop, "fd");
+        flex-direction: map-get($flexDirValList, $propVal);
+    }
+}
+@mixin flex($prop:false){ //@include flex((jc:c, ai:c))
+    display:flex;
+    @include displayProp($prop);
+}
+@mixin grid($prop:false){ //@include grid((jc:c, ai:c))
+    display:grid;
+    @include displayProp($prop);
+}
+@mixin square($val:16px){
+    height:$val;
+    width:$val;
+}
+@mixin inset(){
+    border: 1px solid rgba(0,0,0,0.2);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    background:rgba(0,0,0,0.1);
+}
+@mixin outset(){
+    border: 1px solid rgba(255,255,255,0.2);
+    border-right: 1px solid rgba(0,0,0,0.2);
+    border-bottom: 1px solid rgba(0,0,0,0.2);
+    background:rgba(255,255,255,0.1);
+}
+.insetStyle{
+    @include inset;
+}
+.outsetStyle{
+    @include outset;
+}
+
+@mixin bounce($dir: all){
+    transition: $dir 500ms cubic-bezier(.47,1.64,.41,.8);
+    // transition: all 500ms cubic-bezier(.5, 2.15, .5, -0);
+    // transition: all 400ms cubic-bezier(.5, 1.96, .5, .3);
+}
+@mixin fadeOutUp{
+    // transition: 300ms cubic-bezier(.93,-0.24,.91,.45) !important;
+    transition: 300ms cubic-bezier(.26,-0.5,.63,-0.48) !important;
+    bottom: 64px !important;
+    opacity: 0 !important;
+}
+.fadeOutUp{ // !!! contains !important
+    @include fadeOutUp;
+}
+@keyframes fadeInLeft{
+    0%{
+        right:-128px;
+        opacity: 0;
+    }
+    100%{
+        right:0;
+        opacity:1;
+    }
+}
+.fadeInLeft{
+    animation: fadeInLeft 500ms 1;
+}
+@mixin teamSize{
+    height:100%;
+    min-height:396px;
+    max-height:452px;
+    width:80%;
+    @include desktop{
+        max-width: 900px;
+        min-width: 600px;
+        width:100%;
+    }
+}
+@mixin myPkmnInfoSize{
+    height:100%;
+    min-height:396px;
+    max-height: 452px;
+    width:100%;
+    min-width:290px;
+    max-width: 320px;
+}
+@mixin desktop{
+    @media screen and (min-width:600px){
+        @content;
+    }
+}
+@mixin mobile{
+    @media screen and (max-width:600px){
+        @content;
+    }
+}
+.uiModal{
+    display:flex;
+}
+@media screen and (min-width:768px){
+    .uiModal{
+        display:none;
+    }
+}
+.desktopOnly{
+    display:none;
+    @include desktop{
+        display:unset;
+    }
+}
+
+@keyframes popup{
+    0% {transform:scale(1.1,0.9);}
+    50% {transform:scale(0.95,1.05);}
+    100% {transform:scale(1,1);}
+}
+.popup{
+    animation: popup 0.2s;
+}
+.backdropCont{
+    @include square(100%);
+    @include flex((jc:c, ai:c));
+    max-height:100vh;
+    max-width:100vw;
+    position:absolute;
+    top:0;
+    left:0;
+    .backdrop{
+        @include square(100%);
+        background:rgba(255, 255, 255, 0.2);
+        position:absolute;
+    }
+    .valCont{
+        position:relative;
+        @include flex((jc:c, ai:c));
+    }
+}
+.clickable{
+    cursor: pointer;
+}
+.bug{background:#1C4B27;}
+.dark{background:#040706}
+.dragon{background:#448B95}
+.electric{background:#E3E32B}
+.fairy{background:#971944}
+.fighting{background:#9A3F25}
+.fire{background:#AB1F23}
+.flying{background:#4A677D}
+.ghost{background:#333369}
+.grass{background:#26CB4F}
+.ground{background:#A9702C}
+.ice{background:#86D2F5}
+.normal{background:#75515B}
+.poison{background:#5E2D88}
+.psychic{background:#A42A6C}
+.rock{background:#48180B}
+.steel{background:#5F756D}
+.water{background:#1553E0}
+
+$sidePad:3rem;

@@ -1,0 +1,74 @@
+@use 'lib' as *;
+
+$burgerTransition:.3s;
+
+#body{
+  padding:2rem $sidePad;
+}
+#centerBody{
+  @include flex((jc:sb, ai:c));
+}
+
+#burgerMenu{
+  position:absolute;
+  top:0;
+  right:0;
+  background:red;
+  @include square(6rem);
+  opacity:0;
+  border-bottom-left-radius: 100%;
+  @include flex((jc:fe, ai:fs));
+  padding-top:6rem;
+  padding-right:$sidePad;
+  transition:$burgerTransition;
+  overflow:hidden;
+  &.active{
+    @include square(20rem);
+    opacity:1;
+  }
+}
+#burgerNav{
+  @include flex((fd:c));
+  text-align: right;
+  gap:4px;
+}
+#logoContainer{
+  position:relative;
+}
+
+#hamburgerIcon{
+  @include square(2.0rem);
+  @include flex((fd:c, jc:c));
+  transition:$burgerTransition;
+  position: relative;
+  #hamburgerBar, &::before,&::after{
+    transition:$burgerTransition;
+    height:6px;
+    width:100%;
+    background:yellow;
+    content: "";
+    display: inline-block;
+    position:relative;
+  }
+  &::before{
+    top:-4px;
+  }
+  &::after{
+    bottom:-4px;
+  }
+
+  &.active{
+    transform:rotate(180deg);
+    &::before{
+      transform:rotate(-45deg);
+      top:6px;
+    }
+    #hamburgerBar{
+      transform:rotate(-45deg);
+    }
+    &::after{
+      bottom:6px;
+      transform:rotate(45deg);
+    }
+  }
+}
