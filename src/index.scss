@@ -1,3 +1,4 @@
+@use 'lib' as *;
 *{
   margin: 0;
   padding:0;
@@ -17,4 +18,16 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+#modal-root{
+  background:green;
+  // position:fixed;
+  // top: 0;
+  // left:0;
+  // @include flex((jc:c, ai:c));
+  // @include square(100%);
+}
+
+h1{
+  font-size:1.7rem;
 }

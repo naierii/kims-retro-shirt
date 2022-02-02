@@ -1,0 +1,52 @@
+@use 'lib' as *;
+
+h6{
+  text-align: center;
+}
+a{
+  text-decoration: none;
+  color:white;
+  width:100%;
+}
+
+#body{
+  width:100%;
+  @include flex((jc:c, fd:c));
+  gap:$whiteSpace;
+}
+
+#profilePic{
+  border-radius: 50%;
+  overflow: hidden;
+  @include square(5rem);
+  @include flex((jc:c, ai:c));
+  img{
+    width:100%;
+  }
+}
+
+#me{
+  @include flex((ai:c, fd:c));
+  p{font-size:12px}
+}
+
+
+.commonSection{
+  @include flex((ai:c, fd:c));
+  gap:$whiteSpace3;
+}
+#redirBtnCont{
+  width:100%;
+  min-width:max-content;
+  @include grid;
+  gap:12px;
+}
+
+.sectionImgs{
+  width:100%;
+}
+
+#artFolioNavLink{
+  color:white;
+  text-decoration: none;
+}

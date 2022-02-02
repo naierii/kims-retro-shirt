@@ -2,15 +2,22 @@
 
 #app{
   background: #0A141D;
-  max-height:100vh;
+  // max-height:100vh;
   max-width:100vw;
   min-height:100vh;
-  min-width:100vw;
+  // min-width:100vw;
   position:relative;
+  @include grid;
+  grid-template-rows: max-content 1fr max-content;
 }
 
 #mainBody{
   padding:$sidePad;
   padding-top:1.5rem;
   @include flex((jc:c, ai:c));
+  // max-width: 100vw;
+}
+
+#maxedWidth{
+  max-width: $appMaxWidth;
 }

@@ -1,0 +1,56 @@
+@use 'lib' as *;
+
+.body{
+  @include flex((jc:c, ai:c));
+  position:relative;
+  @include square(100%);
+  position:fixed;
+  top:0;
+  left:0;
+}
+.background{
+  background:rgba(0, 0, 0, 0.5);
+  position:absolute;
+  @include square(100%);
+}
+.children{
+  position:relative;
+}
+
+.closeBtn{
+  @include flex((jc:c, ai:c));
+  top: $whiteSpace3;
+  right:$whiteSpace3;
+  position:absolute;
+  font-size: 3rem;
+  background:rgba(0, 0, 0, 0.5);
+  border-radius:50%;
+  cursor:pointer;
+}
+
+.sideBtn{
+  // background:black;
+  position:absolute;
+  color:white;
+  font-size:3rem;
+  left:0;
+  background:rgba(0, 0, 0, 0.5);
+  @include flex((jc:c, ai:c));
+  padding:3rem 0;
+
+  $rad: 1rem;
+  border-top-right-radius: $rad;
+  border-bottom-right-radius: $rad;
+  cursor:pointer;
+  &:active{
+    background:black;
+    color:yellow;
+  }
+  &.rightBtn{
+    border-radius: unset;
+    border-top-left-radius: $rad;
+    border-bottom-left-radius: $rad;
+    left:unset;
+    right:0;
+  }
+}

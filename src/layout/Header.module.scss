@@ -4,16 +4,19 @@ $burgerTransition:.3s;
 
 #body{
   padding:2rem $sidePad;
+  @include flex((jc:c, ai:c));
 }
 #centerBody{
   @include flex((jc:sb, ai:c));
+  width:100%;
+  max-width:$appMaxWidth;
 }
 
 #burgerMenu{
   position:absolute;
   top:0;
   right:0;
-  background:red;
+  background:rgba(255, 255, 255, 0.9);
   @include square(6rem);
   opacity:0;
   border-bottom-left-radius: 100%;
@@ -32,8 +35,20 @@ $burgerTransition:.3s;
   text-align: right;
   gap:4px;
 }
+.burgerNavBtns{
+  font-size:1.5rem;
+  font-weight:900;
+  color:rgb(7, 0, 103);
+  text-decoration: none;
+  &:hover{
+    text-decoration:underline;
+  }
+}
 #logoContainer{
   position:relative;
+  font-size:2rem;
+  color:white;
+  width:max-content;
 }
 
 #hamburgerIcon{
@@ -41,11 +56,12 @@ $burgerTransition:.3s;
   @include flex((fd:c, jc:c));
   transition:$burgerTransition;
   position: relative;
+  cursor:pointer;
   #hamburgerBar, &::before,&::after{
     transition:$burgerTransition;
     height:6px;
     width:100%;
-    background:yellow;
+    background:white;
     content: "";
     display: inline-block;
     position:relative;
@@ -59,6 +75,9 @@ $burgerTransition:.3s;
 
   &.active{
     transform:rotate(180deg);
+    &::before, #hamburgerBar, &::after{
+      background:rgb(165, 0, 0);
+    }
     &::before{
       transform:rotate(-45deg);
       top:6px;
@@ -72,3 +91,4 @@ $burgerTransition:.3s;
     }
   }
 }
+

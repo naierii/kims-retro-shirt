@@ -1,0 +1,44 @@
+@use 'lib' as *;
+
+#body{
+  @include flex((fd:c, ai:c, jc:fs));
+  @include square(100%);
+  gap:$whiteSpace;
+  a{
+    text-decoration: underline;
+    color:yellow;
+  }
+}
+
+.commonSection{
+  @include flex((ai:c, fd:c));
+  gap:$whiteSpace3;
+  width:100%;
+}
+
+.imgsCont{
+  width:100%;
+  @include flex((jc:fs, ai:fs));
+  flex-wrap: wrap;
+  gap:8px;
+}
+
+.imgCont{
+  height:48px;
+  cursor:pointer;
+  img{
+    height:100%;
+  }
+}
+
+#return{
+  @include flex((jc:fs,ai:c));
+  gap:8px;
+}
+
+#modalImgCont{
+  max-width:500px;
+  img{
+    max-width:100%;
+  }
+}
